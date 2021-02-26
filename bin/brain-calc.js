@@ -12,8 +12,21 @@ function generateQuestion() {
   const secondNum = generateRandomNum();
   const indexOperation = generateRandomOperation(operations.length);
 
+  let result = 0;
+
+  switch(operations[indexOperation]) {
+    case '+':
+      result = firstNum + secondNum;
+      break;
+    case '-':
+      result = firstNum - secondNum;
+      break;
+    case '*':
+      result = firstNum * secondNum;
+      break;
+  }
+
   const operation = `${firstNum} ${operations[indexOperation]} ${secondNum}`;
-  const result = eval(operation);
   return {
     operation,
     result,
