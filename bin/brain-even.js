@@ -1,53 +1,35 @@
 #!/usr/bin/env node
-
-import readlineSync from 'readline-sync';
-import promptName from '../src/cli.js';
-
-const defaultName = promptName();
-
-function generateRandomNum() {
-  return parseInt(((Math.random() * 30) + 1).toFixed(2));
-}
+import { gameInfo, generateRandomNum } from '../src/index.js';
 
 function isEven(num) {
   return num % 2 === 0;
 }
 
-function initQuestion(num) {
-  console.log(`Question: ${num}`);
-}
+const initEvenGame = () => {
 
-function getAnswer() {
-  return readlineSync.question('Your answer: ');
-}
-
-const initEvenGame = (name = defaultName) => {
-  let currentAnswer = false;
-  let countQuestions = 0;
+  gameInfo.queryName();
 
   console.log('Answer "yes" if the number is even, otherwise answer "no".');
 
   do {
     const randomNum = generateRandomNum();
-    initQuestion(randomNum);
 
-    const answer = getAnswer();
+    gameInfo.askQuestion(randomNum);
+    gameInfo.getAnswer();
 
-    if ((answer === 'yes' && isEven(randomNum)) || (answer === 'no' && !isEven(randomNum))) {
-      console.log('Correct!');
+    const correctAnswer = isEven(randomNum) ? 'yes' : 'no';
 
-      currentAnswer = true;
-      countQuestions++;
+    if ((gameInfo.answer === 'yes' && isEven(randomNum)) ||
+        (gameInfo.answer === 'no' && !isEven(randomNum))) {
+      gameInfo.continueGame();
     } else {
-      console.log(`'${answer}' is wrong answer ;(. Correct answer was '${isEven(randomNum) ? 'yes' : 'no'}'. `);
-      console.log(`Let's try again, ${name}!`);
-
-      currentAnswer = false;
+      gameInfo.outputResult(correctAnswer);
+      gameInfo.finishGame();
     }
-  } while (currentAnswer && countQuestions < 3);
 
-  if (countQuestions === 3) {
-    console.log(`Congratulations, ${name}!`);
-  }
+  } while (gameInfo.check());
+
+  gameInfo.gameComplete();
 };
+
 initEvenGame();

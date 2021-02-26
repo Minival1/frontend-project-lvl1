@@ -1,20 +1,8 @@
 #!/usr/bin/env node
-
-import readlineSync from 'readline-sync';
-import promptName from '../src/cli.js';
-
-const defaultName = promptName();
-
-function generateRandomNum() {
-  return parseInt(((Math.random() * 30) + 1).toFixed(2));
-}
+import { gameInfo, generateRandomNum } from '../src/index.js';
 
 function generateRandomOperation(length) {
   return parseInt(Math.trunc(Math.random() * length));
-}
-
-function getAnswer() {
-  return readlineSync.question('Your answer: ');
 }
 
 function generateQuestion() {
@@ -25,45 +13,37 @@ function generateQuestion() {
   const indexOperation = generateRandomOperation(operations.length);
 
   const operation = `${firstNum} ${operations[indexOperation]} ${secondNum}`;
-  const question = `Question: ${operation}`;
   const result = eval(operation);
   return {
-    question,
+    operation,
     result,
   };
 }
 
-const initCalculateGame = (name = defaultName) => {
-  let currentAnswer = false;
-  let countQuestions = 0;
+const initCalculateGame = () => {
+
+  gameInfo.queryName();
+
+  console.log('What is the result of the expression?');
 
   do {
-    console.log('What is the result of the expression?');
     const infoQuestion = generateQuestion();
 
-    console.log(infoQuestion.question);
+    gameInfo.askQuestion(infoQuestion.operation);
 
-    const answerStr = getAnswer();
+    gameInfo.getAnswer();
 
-    const answerToNum = parseInt(answerStr);
+    const answer = parseInt(gameInfo.answer);
 
-    if (answerToNum === infoQuestion.result) {
-      console.log('Correct!');
-
-      currentAnswer = true;
-      countQuestions++;
+    if (answer === infoQuestion.result) {
+      gameInfo.continueGame();
     } else {
-      // сделать правильный вывод ответа
-      console.log(`'${answerStr}' is wrong answer ;(. Correct answer was '${infoQuestion.result}'. `);
-      console.log(`Let's try again, ${name}!`);
-
-      currentAnswer = false;
+      gameInfo.outputResult(infoQuestion.result);
+      gameInfo.finishGame();
     }
-  } while (currentAnswer && countQuestions < 3);
+  } while (gameInfo.check());
 
-  if (countQuestions === 3) {
-    console.log(`Congratulations, ${name}!`);
-  }
+  gameInfo.gameComplete();
 };
 
 initCalculateGame();
