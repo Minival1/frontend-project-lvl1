@@ -14,7 +14,7 @@ function generateProgression() {
 
   let num = firstNum;
 
-  for (let i = 0; i <= lengthProgression; i++) {
+  for (let i = 0; i <= lengthProgression; i += 1) {
     if (i !== 0) {
       num += arithm;
     }

@@ -20,6 +20,8 @@ function generateQuestion() {
     case '*':
       result = firstNum * secondNum;
       break;
+    default:
+      break;
   }
 
   const operation = `${firstNum} ${operations[indexOperation]} ${secondNum}`;
@@ -41,7 +43,7 @@ const initCalculateGame = () => {
 
     gameInfo.getAnswer();
 
-    const answer = parseInt(gameInfo.answer);
+    const answer = +gameInfo.answer;
 
     if (answer === infoQuestion.result) {
       gameInfo.continueGame();

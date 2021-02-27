@@ -4,7 +4,7 @@ import { gameInfo, generateRandomNum } from '../src/index.js';
 function isPrime(num) {
   let count = 0;
 
-  for (let i = 1; i <= num; i++) {
+  for (let i = 1; i <= num; i += 1) {
     if (num % i === 0) {
       count += 1;
     }
