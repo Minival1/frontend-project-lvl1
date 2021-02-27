@@ -1,8 +1,9 @@
 import readlineSync from 'readline-sync';
 import promptName from '../src/cli.js';
 
-function generateRandomNum() {
-    return parseInt(((Math.random() * 30) + 1).toFixed(2));
+function generateRandomNum(min = 1, max = 30) {
+    let rand = min + Math.random() * (max + 1 - min);
+    return Math.floor(rand);
 }
 
 const gameInfo = {

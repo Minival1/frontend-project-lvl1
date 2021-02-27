@@ -1,16 +1,12 @@
 #!/usr/bin/env node
 import { gameInfo, generateRandomNum } from '../src/index.js';
 
-function generateRandomOperation(length) {
-  return parseInt(Math.trunc(Math.random() * length));
-}
-
 function generateQuestion() {
   const operations = ['+', '-', '*'];
 
   const firstNum = generateRandomNum();
   const secondNum = generateRandomNum();
-  const indexOperation = generateRandomOperation(operations.length);
+  const indexOperation = generateRandomNum(0, operations.length - 1);
 
   let result = 0;
 
