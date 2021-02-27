@@ -1,3 +1,4 @@
+[![Actions Status](https://github.com/Minival1/frontend-project-lvl1/workflows/hexlet-check/badge.svg)](https://github.com/Minival1/frontend-project-lvl1/actions)
 [![Maintainability](https://api.codeclimate.com/v1/badges/a99a88d28ad37a79dbf6/maintainability)](https://codeclimate.com/Minival1/frontend-project-lvl1/codeclimate/maintainability)
 
 Первый проект на профессии Фронтенд JavaScript на Хекслете. Проект состоит из 5 консольных игр, где пользователь вводит ответ на вопрос, а программа проверяет его и выводит результат. 
