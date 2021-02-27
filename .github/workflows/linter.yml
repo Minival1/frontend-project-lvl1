@@ -20,7 +20,7 @@ jobs:
 
       # install dependencies
       - name: Install
-      run: make install
+        run: make install
       
       # Runs the Linter action
       - name: Run Linter
