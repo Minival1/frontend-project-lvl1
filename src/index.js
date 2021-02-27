@@ -13,6 +13,7 @@ const gameInfo = {
     name: null,
     queryName() {
         this.name = promptName();
+        console.log(`Hello, ${this.name}!`);
     },
     continueGame() {
         console.log('Correct!');
@@ -30,8 +31,8 @@ const gameInfo = {
         console.log(`'${this.answer}' is wrong answer ;(. Correct answer was '${correctAnswer}'. `);
         console.log(`Let's try again, ${this.name}!`);
     },
-    askQuestion(num) {
-        console.log(`Question: ${num}`);
+    askQuestion(str) {
+        console.log(`Question: ${str}`);
     },
     getAnswer() {
         this.answer = readlineSync.question('Your answer: ');
