@@ -10,7 +10,7 @@ function generateQuestion() {
 
   let result = 0;
 
-  switch(operations[indexOperation]) {
+  switch (operations[indexOperation]) {
     case '+':
       result = firstNum + secondNum;
       break;
@@ -30,7 +30,6 @@ function generateQuestion() {
 }
 
 const initCalculateGame = () => {
-
   gameInfo.queryName();
 
   console.log('What is the result of the expression?');

@@ -6,7 +6,6 @@ function isEven(num) {
 }
 
 const initEvenGame = () => {
-
   gameInfo.queryName();
 
   console.log('Answer "yes" if the number is even, otherwise answer "no".');
@@ -19,14 +18,13 @@ const initEvenGame = () => {
 
     const correctAnswer = isEven(randomNum) ? 'yes' : 'no';
 
-    if ((gameInfo.answer === 'yes' && isEven(randomNum)) ||
-        (gameInfo.answer === 'no' && !isEven(randomNum))) {
+    if ((gameInfo.answer === 'yes' && isEven(randomNum))
+        || (gameInfo.answer === 'no' && !isEven(randomNum))) {
       gameInfo.continueGame();
     } else {
       gameInfo.outputResult(correctAnswer);
       gameInfo.finishGame();
     }
-
   } while (gameInfo.check());
 
   gameInfo.gameComplete();
