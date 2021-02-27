@@ -13,34 +13,34 @@ const gameInfo = {
   answer: null,
   name: null,
   queryName() {
-    gameInfo.name = promptName();
-    console.log(`Hello, ${gameInfo.name}!`);
+    this.name = promptName();
+    console.log(`Hello, ${this.name}!`);
   },
   continueGame() {
     console.log('Correct!');
-    gameInfo.rounds += 1;
-    gameInfo.playGame = true;
+    this.rounds += 1;
+    this.playGame = true;
   },
   finishGame() {
-    gameInfo.rounds = 0;
-    gameInfo.playGame = false;
+    this.rounds = 0;
+    this.playGame = false;
   },
   check() {
-    return gameInfo.playGame && gameInfo.rounds < gameInfo.totalRounds;
+    return this.playGame && this.rounds < this.totalRounds;
   },
   outputResult(correctAnswer) {
-    console.log(`'${gameInfo.answer}' is wrong answer ;(. Correct answer was '${correctAnswer}'. `);
-    console.log(`Let's try again, ${gameInfo.name}!`);
+    console.log(`'${this.answer}' is wrong answer ;(. Correct answer was '${correctAnswer}'. `);
+    console.log(`Let's try again, ${this.name}!`);
   },
   askQuestion(str) {
     console.log(`Question: ${str}`);
   },
   getAnswer() {
-    gameInfo.answer = readlineSync.question('Your answer: ');
+    this.answer = readlineSync.question('Your answer: ');
   },
   gameComplete() {
-    if (gameInfo.rounds === gameInfo.totalRounds) {
-      console.log(`Congratulations, ${gameInfo.name}!`);
+    if (this.rounds === this.totalRounds) {
+      console.log(`Congratulations, ${this.name}!`);
     }
   },
 };
